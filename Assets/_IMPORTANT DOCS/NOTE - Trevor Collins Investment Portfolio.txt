@@ -1,0 +1,58 @@
+Gavin and Williams Financial Planning 
+
+Using MM/DD/YY
+Date: 10/16/1991
+
+This document will give you a brief outline of the financial assets you have. Please see form ZX7 for full details on market movement since the last update and portfolio advice.
+
+---
+
+MegaCorp Systems Inc
+
+Computer Software & Hardware Development
+
+5,000,000  shares at a price of $25.67
+
+TOTAL VAULE $128,350,000
+
+---
+
+Cabranos Shipping LLC
+
+Package Shipping Company
+
+3,000,000 Shares at a price of $3.60
+
+TOTAL VALUE $1,080,000
+
+---
+
+Cheeta Haulage LLC
+
+90,000 Shares at a price of $1.63
+
+TOTAL PRICE $146,700?
+
+---
+
+VONTRONICS CO
+
+Computer Hardware Development Company
+
+703,234 Shares at a price of $14.22 
+
+TOTAL VALUE 9,999,987.48
+
+---
+
+Rafa Oil Holdings
+
+Oil Excavating & Processing Company
+
+250,000 shares at 14.30
+
+TOTAL VALUE $3,575,000?
+
+---
+
+
