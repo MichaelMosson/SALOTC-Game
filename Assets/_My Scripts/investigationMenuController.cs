@@ -5,49 +5,139 @@ using UnityEngine.UI;
 
 public class investigationMenuController : MonoBehaviour {
 
-    private GameController gameController;
-
     public GameObject investigationMenu;
     public Text headerText;
     public Text bodyText;
-    int pageNumber;
+    public Text footerText;
+    public Text pageNumberText;
 
-	// Use this for initialization
-	void Start ()
+    int pageNumber = 0;
+
+    bool investigationMenuActive;
+
+    string[] investigationTitle = new string[10] { "Contents", "Inital Crime Scene Report", "File - Trevor Collins", "File - Cristiano Santos", "File - Rory Stirling", "File - Wayne Gavin", "File - Roy Black", "File - Nancy Washington", "File - Linda Terry", "Evidence Found" };
+    string[] investigationContents = new string[10] { "0 - Contents\n \n1 - Inital Crime Scene Report\n \n2 - File - Trevor Collins\n \n3 - File - Cristiano Santos\n \n4 - File - Rory Stirling\n \n5 - File - Wayne Gavin\n \n6 - File - Roy Black\n \n7 - File - Nancy Washington\n \n8 - File - Linda Terry\n \n9 - Evidence Found",
+        "", "", "", "", "", "", "", "", "" };
+    string[] investigationFooter = new string[10] { "", "", "", "", "", "", "", "", "", "" };
+
+    // Use this for initialization
+    void Start ()
     {
-        pageNumber = 1;
-        gameController = GetComponent<GameController>();
-		
+        investigationMenuActive = false;
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate ()
+	void Update ()
     {
-        checkState();
+        InvestigationPanelControls();
 
-        if (gameController.investigationMenuActive)
+        if (!investigationMenuActive && Input.GetKey(KeyCode.I))
         {
-            setText();
-            gameController.InvestigationMenuControlScheme();
+            Debug.Log("Button Pressed");
+            OpenPanel();
         }
 
-    }
-
-    public void checkState()
-    {
-        if (gameController.investigationMenuActive)
+        if (pageNumber < 0)
         {
-            investigationMenu.SetActive(true);                
+            pageNumber = 0;
         }
-        if (!gameController.investigationMenuActive)
+        if (pageNumber > 9)
         {
-            investigationMenu.SetActive(false);
+            pageNumber = 9;
         }
     }
 
-    public void setText()
+    void OpenPanel()
     {
+        pageNumber = 0;
+        investigationMenu.SetActive(true);
+        Time.timeScale = 0;
 
+        investigationMenuActive = true;
+
+        AssignPageContents();
+    }
+
+    void ClosePanel()
+    {
+        investigationMenu.SetActive(false);
+        Time.timeScale = 1;
+
+        investigationMenuActive = false;
+    }
+
+    void IncreasePage()
+    {
+        if (pageNumber < 9) //PAGE MAX, REASSIGN THIS VALUE TO REFLECT WHAT THE ACTUAL MAX IS
+        {
+            pageNumber++;
+
+            headerText.text = investigationTitle[pageNumber];
+            bodyText.text = investigationContents[pageNumber];
+            //footerText.text = investigationFooter[pageNumber];
+            pageNumberText.text = "" + pageNumber;
+        }
+        /*else
+        {
+            pageNumber = 0;
+        }*/
+
+        //AssignPageContents();
+    }
+
+    void DecreasePage()
+    {
+        if (pageNumber > 0)
+        {
+            pageNumber--;
+
+            headerText.text = investigationTitle[pageNumber];
+            bodyText.text = investigationContents[pageNumber];
+            //footerText.text = investigationFooter[pageNumber];
+            pageNumberText.text = "" + pageNumber;
+        }
+        /*else
+        {
+            pageNumber = 10; //PAGE MAX, REASSIGN THIS VALUE TO REFLECT WHAT THE ACTUAL MAX IS
+        }*/
+
+        //AssignPageContents();
+    }
+
+    void AssignPageContents()
+    {
+        headerText.text = investigationTitle[pageNumber];
+        bodyText.text = investigationContents[pageNumber];
+        footerText.text = "Use the Arrow Keys to change page \nPress [TAB] to close ";
+        pageNumberText.text = ""+pageNumber;
+    }
+
+    void InvestigationPanelControls()
+    {
+        //control to activate panel
+       /* if (!investigationMenuActive && Input.GetKey(KeyCode.I))
+        {
+            OpenPanel();
+        } */
+
+        //controls when the panel is active
+
+        if (investigationMenuActive)
+        {
+            if (Input.GetKey(KeyCode.Tab) || Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.I))
+            {
+                ClosePanel();
+            }
+
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                IncreasePage();
+            }
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                DecreasePage();
+            }
+        }
     }
 
     

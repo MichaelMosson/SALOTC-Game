@@ -7,8 +7,8 @@ public class GameController : MonoBehaviour {
 
     //TODO add another text specifically to tell the player that the game is paused
     public bool gamePaused;
-
     public bool investigationMenuActive;
+    public bool inTerminal;
     
 
 	// Use this for initialization
